@@ -4,11 +4,365 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Planet Time</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap");
+
+      body {
+        background-color: #fcc202;
+      }
+
+      h1 {
+        font-family: "Kode Mono", monospace;
+        font-size: 4em;
+      }
+
+      p {
+        font-family: "Kode Mono", monospace;
+        font-size: 1.5em;
+      }
+
+      .container {
+        margin-left: auto; /* Push container to the right */
+        margin-right: auto; /* Push container to the left */
+        max-width: 1000px; /* Optional: Set maximum width */
+      }
+
+      .clock-element {
+        font-family: "Digital-7", Arial, sans-serif; /* Apply Digital-7 font */
+        font-family: Arial, sans-serif;
+        font-size: 3rem;
+        background-color: #f5f3ed;
+        width: 200px; /* Adjust width as needed */
+        height: 100px;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .clock {
+        margin-top: 20px;
+        display: flex;
+        background-color: #f5f3ed;
+        width: 1000px;
+        height: 100px;
+      }
+
+      .clock-element {
+        font-family: "Kode Mono", monospace;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
   </head>
   <body>
-    <h1>Hello World</h1>
+    <div class="container">
+      <div class="header-container">
+        <h1>Time Unbound: Exploring Planetary Clocks Across the Universe.</h1>
+        <p>
+          Here, you'll find an intriguing array of digital clocks, each representing a unique world in our
+          vast universe. By recalibrating Earth's standard 24-hour day, these clocks offer a glimpse into the
+          temporal rhythms of other celestial bodies. Some clocks may race ahead, while others languish in
+          stillness, mirroring the varied day cycles of planets beyond our own. Step into this mesmerizing
+          realm and witness time's fluidity across the cosmos.
+        </p>
+      </div>
+
+      <div class="container">
+        <div class="clock">
+          <div class="clock-element"><h3>Earth</h3></div>
+          <div class="clock-element" id="earth-hours">Hours</div>
+          <div class="clock-element" id="earth-separator">:</div>
+          <div class="clock-element" id="earth-minutes">Minutes</div>
+          <div class="clock-element" id="earth-separator">:</div>
+          <div class="clock-element" id="earth-seconds">Seconds</div>
+        </div>
+
+        <div class="clock">
+          <div class="clock-element"><h3>Mars</h3></div>
+          <div class="clock-element" id="mars-hours">Hours</div>
+          <div class="clock-element" id="mars-separator">:</div>
+          <div class="clock-element" id="mars-minutes">Minutes</div>
+          <div class="clock-element" id="mars-separator">:</div>
+          <div class="clock-element" id="mars-seconds">Seconds</div>
+        </div>
+
+        <div class="clock">
+          <div class="clock-element"><h3>Saturn</h3></div>
+          <div class="clock-element" id="saturn-hours">Hours</div>
+          <div class="clock-element" id="saturn-separator">:</div>
+          <div class="clock-element" id="saturn-minutes">Minutes</div>
+          <div class="clock-element" id="saturn-separator">:</div>
+          <div class="clock-element" id="saturn-seconds">Seconds</div>
+        </div>
+
+        <div class="clock">
+          <div class="clock-element"><h3>uranus</h3></div>
+          <div class="clock-element" id="uranus-hours">Hours</div>
+          <div class="clock-element" id="uranus-separator">:</div>
+          <div class="clock-element" id="uranus-minutes">Minutes</div>
+          <div class="clock-element" id="uranus-separator">:</div>
+          <div class="clock-element" id="uranus-seconds">Seconds</div>
+        </div>
+
+        <div class="clock">
+          <div class="clock-element"><h3>neptun</h3></div>
+          <div class="clock-element" id="neptun-hours">Hours</div>
+          <div class="clock-element" id="neptun-separator">:</div>
+          <div class="clock-element" id="neptun-minutes">Minutes</div>
+          <div class="clock-element" id="neptun-separator">:</div>
+          <div class="clock-element" id="neptun-seconds">Seconds</div>
+        </div>
+
+        <div class="clock">
+          <div class="clock-element"><h3>venus</h3></div>
+          <div class="clock-element" id="venus-hours">Hours</div>
+          <div class="clock-element" id="venus-separator">:</div>
+          <div class="clock-element" id="venus-minutes">Minutes</div>
+          <div class="clock-element" id="venus-separator">:</div>
+          <div class="clock-element" id="venus-seconds">Seconds</div>
+        </div>
+
+        <div class="clock">
+          <div class="clock-element"><h3>merkur</h3></div>
+          <div class="clock-element" id="merkur-hours">Hours</div>
+          <div class="clock-element" id="merkur-separator">:</div>
+          <div class="clock-element" id="merkur-minutes">Minutes</div>
+          <div class="clock-element" id="merkur-separator">:</div>
+          <div class="clock-element" id="merkur-seconds">Seconds</div>
+        </div>
+      </div>
+    </div>
+
     <script>
-      console.log("Hello");
+      console.log("STARTING PROGRAM...");
+
+      function getHour() {
+        const now = new Date();
+        return String(now.getHours()).padStart(2, "0");
+      }
+
+      function getMinute() {
+        const now = new Date();
+        return String(now.getMinutes()).padStart(2, "0");
+      }
+
+      function getSecond() {
+        const now = new Date();
+        return String(now.getSeconds()).padStart(2, "0");
+      }
+
+      function displayClock(planet) {
+        if (planet === "earth") {
+          const earthHours = document.getElementById("earth-hours");
+          const earthMinutes = document.getElementById("earth-minutes");
+          const earthSeconds = document.getElementById("earth-seconds");
+
+          let hours = getHour();
+          let minutes = getMinute();
+          let seconds = getSecond();
+
+          earthHours.innerText = hours;
+          earthMinutes.innerText = minutes;
+          earthSeconds.innerText = seconds;
+
+          setInterval(() => {
+            hours = getHour();
+            minutes = getMinute();
+            seconds = getSecond();
+
+            earthHours.innerText = hours;
+            earthMinutes.innerText = minutes;
+            earthSeconds.innerText = seconds;
+          }, 1000);
+        }
+
+        if (planet === "mars") {
+          const marsHours = document.getElementById("mars-hours");
+          const marsMinutes = document.getElementById("mars-minutes");
+          const marsSeconds = document.getElementById("mars-seconds");
+
+          let hours = getHour();
+          let minutes = getMinute();
+          let seconds = getSecond();
+
+          marsHours.innerText = hours;
+          marsMinutes.innerText = minutes;
+          marsSeconds.innerText = seconds;
+
+          setInterval(function () {
+            seconds = (parseInt(seconds) + 1) % 60;
+            marsSeconds.innerHTML = (seconds + 1) % 60;
+
+            if (parseInt(seconds) === 59) {
+              minutes = String((parseInt(minutes) + 1) % 60).padStart(2, "0");
+              marsMinutes.innerText = minutes;
+
+              if (parseInt(minutes) === 0) {
+                hours = String((parseInt(hours) + 1) % 24).padStart(2, "0");
+                marsHours.innerText = hours;
+              }
+            }
+          }, 1026);
+        }
+
+        if (planet === "saturn") {
+          const saturnHours = document.getElementById("saturn-hours");
+          const saturnMinutes = document.getElementById("saturn-minutes");
+          const saturnSeconds = document.getElementById("saturn-seconds");
+
+          let hours = getHour();
+          let minutes = getMinute();
+          let seconds = getSecond();
+
+          saturnHours.innerText = hours;
+          saturnMinutes.innerText = minutes;
+          saturnSeconds.innerText = seconds;
+
+          setInterval(function () {
+            seconds = (parseInt(seconds) + 1) % 60;
+            saturnSeconds.innerHTML = (seconds + 1) % 60;
+
+            if (parseInt(seconds) === 59) {
+              minutes = String((parseInt(minutes) + 1) % 60).padStart(2, "0");
+              saturnMinutes.innerText = minutes;
+
+              if (parseInt(minutes) === 0) {
+                hours = String((parseInt(hours) + 1) % 24).padStart(2, "0");
+                saturnHours.innerText = hours;
+              }
+            }
+          }, 440);
+        }
+
+        if (planet === "uranus") {
+          const uranusHours = document.getElementById("uranus-hours");
+          const uranusMinutes = document.getElementById("uranus-minutes");
+          const uranusSeconds = document.getElementById("uranus-seconds");
+
+          let hours = getHour();
+          let minutes = getMinute();
+          let seconds = getSecond();
+
+          uranusHours.innerText = hours;
+          uranusMinutes.innerText = minutes;
+          uranusSeconds.innerText = seconds;
+
+          setInterval(function () {
+            seconds = (parseInt(seconds) + 1) % 60;
+            uranusSeconds.innerHTML = (seconds + 1) % 60;
+
+            if (parseInt(seconds) === 59) {
+              minutes = String((parseInt(minutes) + 1) % 60).padStart(2, "0");
+              uranusMinutes.innerText = minutes;
+
+              if (parseInt(minutes) === 0) {
+                hours = String((parseInt(hours) + 1) % 24).padStart(2, "0");
+                uranusHours.innerText = hours;
+              }
+            }
+          }, 718);
+        }
+
+        if (planet === "neptun") {
+          const neptunHours = document.getElementById("neptun-hours");
+          const neptunMinutes = document.getElementById("neptun-minutes");
+          const neptunSeconds = document.getElementById("neptun-seconds");
+
+          let hours = getHour();
+          let minutes = getMinute();
+          let seconds = getSecond();
+
+          neptunHours.innerText = hours;
+          neptunMinutes.innerText = minutes;
+          neptunSeconds.innerText = seconds;
+
+          setInterval(function () {
+            seconds = (parseInt(seconds) + 1) % 60;
+            neptunSeconds.innerHTML = (seconds + 1) % 60;
+
+            if (parseInt(seconds) === 59) {
+              minutes = String((parseInt(minutes) + 1) % 60).padStart(2, "0");
+              neptunMinutes.innerText = minutes;
+
+              if (parseInt(minutes) === 0) {
+                hours = String((parseInt(hours) + 1) % 24).padStart(2, "0");
+                neptunHours.innerText = hours;
+              }
+            }
+          }, 671);
+        }
+
+        if (planet === "venus") {
+          const venusHours = document.getElementById("venus-hours");
+          const venusMinutes = document.getElementById("venus-minutes");
+          const venusSeconds = document.getElementById("venus-seconds");
+
+          let hours = getHour();
+          let minutes = getMinute();
+          let seconds = getSecond();
+
+          venusHours.innerText = hours;
+          venusMinutes.innerText = minutes;
+          venusSeconds.innerText = seconds;
+
+          setInterval(function () {
+            seconds = (parseInt(seconds) + 1) % 60;
+            venusSeconds.innerHTML = (seconds + 1) % 60;
+
+            if (parseInt(seconds) === 59) {
+              minutes = String((parseInt(minutes) + 1) % 60).padStart(2, "0");
+              venusMinutes.innerText = minutes;
+
+              if (parseInt(minutes) === 0) {
+                hours = String((parseInt(hours) + 1) % 24).padStart(2, "0");
+                neptunHours.innerText = hours;
+              }
+            }
+          }, 243000);
+        }
+
+        if (planet === "merkur") {
+          const merkurHours = document.getElementById("merkur-hours");
+          const merkurMinutes = document.getElementById("merkur-minutes");
+          const merkurSeconds = document.getElementById("merkur-seconds");
+
+          let hours = getHour();
+          let minutes = getMinute();
+          let seconds = getSecond();
+
+          merkurHours.innerText = hours;
+          merkurMinutes.innerText = minutes;
+          merkurSeconds.innerText = seconds;
+
+          setInterval(function () {
+            seconds = (parseInt(seconds) + 1) % 60;
+            merkurSeconds.innerHTML = (seconds + 1) % 60;
+
+            if (parseInt(seconds) === 59) {
+              minutes = String((parseInt(minutes) + 1) % 60).padStart(2, "0");
+              merkurMinutes.innerText = minutes;
+
+              if (parseInt(minutes) === 0) {
+                hours = String((parseInt(hours) + 1) % 24).padStart(2, "0");
+                neptunHours.innerText = hours;
+              }
+            }
+          }, 59000);
+        }
+      }
+
+      displayClock("earth");
+      displayClock("mars");
+      displayClock("saturn");
+      displayClock("uranus");
+      displayClock("neptun");
+      displayClock("venus");
+      displayClock("merkur");
     </script>
   </body>
 </html>
